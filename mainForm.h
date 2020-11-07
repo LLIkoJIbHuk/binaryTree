@@ -172,6 +172,8 @@ namespace binaryTree {
 		struct BTree* q2 = 0;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown2;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ buttonSolution;
+
 	public:
 		int answer = 0;
 	
@@ -231,6 +233,7 @@ namespace binaryTree {
 			this->оПрограммеToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->numericUpDown2 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->buttonSolution = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->menuStrip1->SuspendLayout();
@@ -260,6 +263,8 @@ namespace binaryTree {
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(39, 22);
 			this->numericUpDown1->TabIndex = 1;
+			this->numericUpDown1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->numericUpDown1->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->numericUpDown1->ValueChanged += gcnew System::EventHandler(this, &mainForm::numericUpDown1_ValueChanged);
 			// 
 			// textBox1
@@ -326,6 +331,7 @@ namespace binaryTree {
 			// numericUpDown2
 			// 
 			this->numericUpDown2->Location = System::Drawing::Point(12, 514);
+			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
 			this->numericUpDown2->Size = System::Drawing::Size(206, 22);
 			this->numericUpDown2->TabIndex = 7;
@@ -342,11 +348,27 @@ namespace binaryTree {
 			this->label2->TabIndex = 8;
 			this->label2->Text = L"Уровень с минимальным значением";
 			// 
+			// buttonSolution
+			// 
+			this->buttonSolution->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->buttonSolution->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonSolution->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonSolution->Location = System::Drawing::Point(527, 489);
+			this->buttonSolution->Name = L"buttonSolution";
+			this->buttonSolution->Size = System::Drawing::Size(230, 47);
+			this->buttonSolution->TabIndex = 9;
+			this->buttonSolution->Text = L"Решение";
+			this->buttonSolution->UseVisualStyleBackColor = false;
+			this->buttonSolution->Click += gcnew System::EventHandler(this, &mainForm::buttonSolution_Click);
+			// 
 			// mainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->ClientSize = System::Drawing::Size(1198, 548);
+			this->Controls->Add(this->buttonSolution);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->numericUpDown2);
 			this->Controls->Add(this->buttonDelete);
@@ -359,6 +381,7 @@ namespace binaryTree {
 			this->Name = L"mainForm";
 			this->Text = L"Бинарное дерево";
 			this->Load += gcnew System::EventHandler(this, &mainForm::mainForm_Load);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &mainForm::mainForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
@@ -373,10 +396,9 @@ namespace binaryTree {
 		
 	}
 
-	private: System::Void mainForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
+	
 
-	//увелчиение кол-ва элементов
+	//изменение кол-ва элементов
 	private: System::Void numericUpDown1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 	
 		int n;
@@ -414,7 +436,6 @@ namespace binaryTree {
 
 	//действие при нажатии на кнопку удалить
 	private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-		/*
 		int i = 0;
 		int key = 0;
 		key = Convert::ToInt64(numericUpDown2->Value);
@@ -435,10 +456,166 @@ namespace binaryTree {
 		g->Clear(BackColor);
 		g->FillRectangle(gcnew SolidBrush(Color::White), 130, 0, 600, 600);
 		Draw();
-		*/
 	}
 
 	private: System::Void numericUpDown2_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+
+	//действие при нажатие на кнопку решение
+	private: System::Void buttonSolution_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		int i = 0;
+		bool flag = false;
+		n = Convert::ToInt64(numericUpDown1->Value);
+		dataGridView1->RowCount = n;
+		for (i = 0; i < n; i++)
+		{
+			dataGridView1->Rows[i]->HeaderCell->Value = Convert::ToString(i);
+		}
+		try
+		{
+			int* val = 0;	
+			val = new int[n];
+			for (i = 0; i < n; i++)
+			{
+				val[i] = Convert::ToInt64(dataGridView1[0, i]->Value);
+			}
+
+			if (r)
+			{
+				del(r);
+				r = 0;
+			}
+			for (i = 0; i < n; i++)
+			{
+				r = stree(r, val[i]);
+			}
+			int* s = 0;
+			s = new int[n];
+			for (i = 0; i < n; i++)
+			{
+				s[i] = 0;
+			}
+			flag = true;
+			output(r, s, flag);
+			for (i = 0; i < n; i++)
+			{
+				string += Convert::ToString(s[i]) + " ";
+			}
+			if (r != 0)
+			{
+				Graphics^ g = CreateGraphics();
+				g->Clear(BackColor);
+				g->FillRectangle(gcnew SolidBrush(Color::White), 130, 0, 600, 600);
+				Draw();
+				// MessageBox::Show("Вершины в постфиксном порядке: " + string + "\n");
+				// MessageBox::Show("Вершины в постфиксном порядке: " + min + "\n");
+				int min = getMinField(r);
+				textBox1->Text = Convert::ToString(min);
+				// MessageBox::Show("Вершины в постфиксном порядке: " + min + "\n");
+				int count = getCountNodesWithValue(min, r);
+				buttonSolution->Enabled = true;
+				numericUpDown2->Enabled = true;
+				MessageBox::Show("Вершины в постфиксном порядке: " + string + "\n" + "Минимальное: " + min + "\n" + "Количество мин: " + count + "\n");
+			}
+		}
+		catch (FormatException^ FormatException)
+		{
+			MessageBox::Show("Ошибка формата введенных значений!");
+			for (i = 0; i < n; i++)
+			{
+				dataGridView1[0, i]->Value = "";
+			}
+		}
+		string = "";
+
+	
+	}
+
+	private: System::Void Draw() {
+		int D = 30;
+		int R = D / 2;
+		int x0 = 430 - R;
+		int y0 = 50;
+		int x = 120;
+		int y = 60;
+		int i = 0;
+		StringFormat^ format = gcnew StringFormat();
+		format->LineAlignment = StringAlignment::Center;
+		format->Alignment = StringAlignment::Center;
+		Graphics^ g = CreateGraphics();
+		if (r)
+		{
+			g->DrawEllipse(gcnew Pen(Color::Red, 3.0), x0, y0, D, D);
+			g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0, y0, R * 2, D), format);
+			if (r->left)
+				draw_left(r->left, x0 - x, y0 + y, x);
+			if (r->right)
+				draw_right(r->right, x0 + x, y0 + y, x);
+		}
+	}
+
+	private: System::Void draw_left(BTree* r, int x0, int y0, int x) {
+		int D = 30;
+		int R = D / 2;
+		int y = 60;
+		StringFormat^ format = gcnew StringFormat();
+		format->LineAlignment = StringAlignment::Center;
+		format->Alignment = StringAlignment::Center;
+		Graphics^ g = CreateGraphics();
+		g->DrawLine(gcnew Pen(Color::Black, 1.0), x0 + R, y0, x0 + x + R, y0 - 60 + D);
+		if (x > 30)
+		{
+			x /= 2;
+		}
+		g->DrawEllipse(gcnew Pen(Color::Red, 3.0), x0, y0, D, D);
+		g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0 - R, y0, D * 2, D), format);
+		if (r->left)
+			draw_left(r->left, x0 - x, y0 + y, x);
+		if (r->right)
+			draw_right(r->right, x0 + x, y0 + y, x);
+	}
+
+	private: System::Void draw_right(BTree* r, int x0, int y0, int x) {
+		int D = 30;
+		int R = D / 2;
+		int y = 60;
+		StringFormat^ format = gcnew StringFormat();
+		format->LineAlignment = StringAlignment::Center;
+		format->Alignment = StringAlignment::Center;
+		Graphics^ g = CreateGraphics();
+		g->DrawLine(gcnew Pen(Color::Black, 1.0), x0 + R, y0, x0 - x + R, y0 - 60 + D);
+		if (x > 30)
+		{
+			x /= 2;
+		}
+		g->DrawEllipse(gcnew Pen(Color::Red, 3.0), x0, y0, D, D);
+		g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0 - R, y0, D * 2, D), format);
+		if (r->left)
+			draw_left(r->left, x0 - x, y0 + y, x);
+		if (r->right)
+			draw_right(r->right, x0 + x, y0 + y, x);
+	}
+
+	/*
+		СВОЙСТВА ФОРМЫ
+	*/
+
+	private: System::Void mainForm_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+		Graphics^ g = CreateGraphics();
+		g->Clear(BackColor);
+		g->FillRectangle(gcnew SolidBrush(Color::White), 130, 0, 600, 600);
+	}
+
+	//действие при загрузке формы
+	private: System::Void mainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		dataGridView1->RowCount = 1;
+		for (int i = 0; i < n; i++) {
+			dataGridView1->Rows[i]->HeaderCell->Value = Convert::ToString(i);
+		}
 	}
 };
 }
