@@ -124,19 +124,15 @@ int getMinField(BTree* tree)
 
 //функция подсчета узлов с значениями
 int getCountNodesWithValue(int value, BTree* tree, int counter = 0) {
-	if (tree != NULL)
-	{
-		if (tree->info == value)
-		{
+	if (tree != NULL) {
+		if (tree->info == value) {
 			counter++;
 		}
 
-		if (value <= tree->info)
-		{
+		if (value <= tree->info) {
 			counter = getCountNodesWithValue(value, tree->left, counter);
 		}
-		else
-		{
+		else {
 			counter = getCountNodesWithValue(value, tree->right, counter);
 		}
 	}
@@ -269,7 +265,7 @@ namespace binaryTree {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(877, 93);
+			this->textBox1->Location = System::Drawing::Point(15, 473);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(309, 22);
 			this->textBox1->TabIndex = 2;
@@ -293,7 +289,7 @@ namespace binaryTree {
 			this->buttonDelete->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonDelete->ForeColor = System::Drawing::Color::Red;
-			this->buttonDelete->Location = System::Drawing::Point(12, 462);
+			this->buttonDelete->Location = System::Drawing::Point(15, 514);
 			this->buttonDelete->Name = L"buttonDelete";
 			this->buttonDelete->Size = System::Drawing::Size(205, 46);
 			this->buttonDelete->TabIndex = 5;
@@ -330,7 +326,7 @@ namespace binaryTree {
 			// 
 			// numericUpDown2
 			// 
-			this->numericUpDown2->Location = System::Drawing::Point(12, 514);
+			this->numericUpDown2->Location = System::Drawing::Point(15, 566);
 			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
 			this->numericUpDown2->Size = System::Drawing::Size(206, 22);
@@ -342,7 +338,7 @@ namespace binaryTree {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(873, 70);
+			this->label2->Location = System::Drawing::Point(11, 450);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(313, 20);
 			this->label2->TabIndex = 8;
@@ -354,7 +350,7 @@ namespace binaryTree {
 			this->buttonSolution->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonSolution->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonSolution->Location = System::Drawing::Point(527, 489);
+			this->buttonSolution->Location = System::Drawing::Point(521, 541);
 			this->buttonSolution->Name = L"buttonSolution";
 			this->buttonSolution->Size = System::Drawing::Size(230, 47);
 			this->buttonSolution->TabIndex = 9;
@@ -367,7 +363,7 @@ namespace binaryTree {
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->ClientSize = System::Drawing::Size(1198, 548);
+			this->ClientSize = System::Drawing::Size(1198, 600);
 			this->Controls->Add(this->buttonSolution);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->numericUpDown2);
@@ -426,12 +422,12 @@ namespace binaryTree {
 
 	private: System::Void оПрограммеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		MessageBox::Show("Программа 'Бинарные деревья'\n"
-			"Вариант 11\n"
 			"Дисциплина: Языки программирования\n"
+			"Вариант 11\n"
+			"Учебная группа ИНБс-2301 \n"
 			"Версия 1.0\n"
-			"2020 год\n"
 			"Разработчики - Юрлов Константин, Чайников Денис \n"
-			"Учебная группа ИНБс-2301");
+			"\n\t\t\t2020 год\n");
 	}
 
 	//действие при нажатии на кнопку удалить
@@ -440,13 +436,10 @@ namespace binaryTree {
 		int key = 0;
 		key = Convert::ToInt64(numericUpDown2->Value);
 		n = Convert::ToInt64(numericUpDown1->Value);
-		for (i = 0; i < 10; i++)
-		{
+		for (i = 0; i < 10; i++) {
 			r = dtree(r, key);
-			if (i < n)
-			{
-				if (Convert::ToInt64(dataGridView1[0, i]->Value) == key)
-				{
+			if (i < n) {
+				if (Convert::ToInt64(dataGridView1[0, i]->Value) == key) {
 					dataGridView1->Rows->RemoveAt(i);
 					numericUpDown1->Value--;
 				}
@@ -468,42 +461,34 @@ namespace binaryTree {
 		bool flag = false;
 		n = Convert::ToInt64(numericUpDown1->Value);
 		dataGridView1->RowCount = n;
-		for (i = 0; i < n; i++)
-		{
+		for (i = 0; i < n; i++)	{
 			dataGridView1->Rows[i]->HeaderCell->Value = Convert::ToString(i);
 		}
-		try
-		{
+		try {
 			int* val = 0;	
 			val = new int[n];
-			for (i = 0; i < n; i++)
-			{
+			for (i = 0; i < n; i++) {
 				val[i] = Convert::ToInt64(dataGridView1[0, i]->Value);
 			}
 
-			if (r)
-			{
+			if (r) {
 				del(r);
 				r = 0;
 			}
-			for (i = 0; i < n; i++)
-			{
+			for (i = 0; i < n; i++) {
 				r = stree(r, val[i]);
 			}
 			int* s = 0;
 			s = new int[n];
-			for (i = 0; i < n; i++)
-			{
+			for (i = 0; i < n; i++) {
 				s[i] = 0;
 			}
 			flag = true;
 			output(r, s, flag);
-			for (i = 0; i < n; i++)
-			{
+			for (i = 0; i < n; i++) {
 				string += Convert::ToString(s[i]) + " ";
 			}
-			if (r != 0)
-			{
+			if (r != 0) {
 				Graphics^ g = CreateGraphics();
 				g->Clear(BackColor);
 				g->FillRectangle(gcnew SolidBrush(Color::White), 130, 0, 600, 600);
@@ -519,11 +504,9 @@ namespace binaryTree {
 				MessageBox::Show("Вершины в постфиксном порядке: " + string + "\n" + "Минимальное: " + min + "\n" + "Количество мин: " + count + "\n");
 			}
 		}
-		catch (FormatException^ FormatException)
-		{
+		catch (FormatException^ FormatException) {
 			MessageBox::Show("Ошибка формата введенных значений!");
-			for (i = 0; i < n; i++)
-			{
+			for (i = 0; i < n; i++) {
 				dataGridView1[0, i]->Value = "";
 			}
 		}
@@ -533,7 +516,7 @@ namespace binaryTree {
 	}
 
 	private: System::Void Draw() {
-		int D = 30;
+		int D = 40;
 		int R = D / 2;
 		int x0 = 430 - R;
 		int y0 = 50;
@@ -544,8 +527,7 @@ namespace binaryTree {
 		format->LineAlignment = StringAlignment::Center;
 		format->Alignment = StringAlignment::Center;
 		Graphics^ g = CreateGraphics();
-		if (r)
-		{
+		if (r) {
 			g->DrawEllipse(gcnew Pen(Color::Black, 3.0), x0, y0, D, D);
 			g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0, y0, R * 2, D), format);
@@ -604,6 +586,7 @@ namespace binaryTree {
 		СВОЙСТВА ФОРМЫ
 	*/
 
+	//цвет формы
 	private: System::Void mainForm_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 		Graphics^ g = CreateGraphics();
 		g->Clear(BackColor);
