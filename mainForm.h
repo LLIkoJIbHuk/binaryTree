@@ -413,7 +413,7 @@ namespace binaryTree {
 	//menustrip
 	private: System::Void заданиеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	MessageBox::Show("Вариант 11\n\n"
-			"1.) Дано число N(>0) и набор из N чисел.Создать бинарное упорядоченное "
+			"1.) Дано число N(>0) и набор из N чисел. Создать бинарное упорядоченное "
 			"дерево (в котором левое поддерево содержит вершины, меньшие или равные "
 			"корню, а правое содержит вершины, большие корня), содержащее N вершин "
 			"со значениями из исходного набора.\n\n"
@@ -430,7 +430,7 @@ namespace binaryTree {
 			"Дисциплина: Языки программирования\n"
 			"Версия 1.0\n"
 			"2020 год\n"
-			"Разработчик - Юрлов Константин \n"
+			"Разработчики - Юрлов Константин, Чайников Денис \n"
 			"Учебная группа ИНБс-2301");
 	}
 
@@ -546,7 +546,7 @@ namespace binaryTree {
 		Graphics^ g = CreateGraphics();
 		if (r)
 		{
-			g->DrawEllipse(gcnew Pen(Color::Red, 3.0), x0, y0, D, D);
+			g->DrawEllipse(gcnew Pen(Color::Black, 3.0), x0, y0, D, D);
 			g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0, y0, R * 2, D), format);
 			if (r->left)
@@ -569,7 +569,7 @@ namespace binaryTree {
 		{
 			x /= 2;
 		}
-		g->DrawEllipse(gcnew Pen(Color::Red, 3.0), x0, y0, D, D);
+		g->DrawEllipse(gcnew Pen(Color::Black, 3.0), x0, y0, D, D);
 		g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0 - R, y0, D * 2, D), format);
 		if (r->left)
@@ -591,7 +591,7 @@ namespace binaryTree {
 		{
 			x /= 2;
 		}
-		g->DrawEllipse(gcnew Pen(Color::Red, 3.0), x0, y0, D, D);
+		g->DrawEllipse(gcnew Pen(Color::Black, 3.0), x0, y0, D, D);
 		g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0 - R, y0, D * 2, D), format);
 		if (r->left)
