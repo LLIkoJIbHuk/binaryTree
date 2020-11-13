@@ -253,11 +253,11 @@ namespace binaryTree {
 			// 
 			// numericUpDown1
 			// 
-			this->numericUpDown1->BackColor = System::Drawing::SystemColors::Info;
-			this->numericUpDown1->Location = System::Drawing::Point(178, 413);
+			this->numericUpDown1->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->numericUpDown1->Location = System::Drawing::Point(234, 416);
 			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(39, 22);
+			this->numericUpDown1->Size = System::Drawing::Size(90, 22);
 			this->numericUpDown1->TabIndex = 1;
 			this->numericUpDown1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->numericUpDown1->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
@@ -265,6 +265,7 @@ namespace binaryTree {
 			// 
 			// textBox1
 			// 
+			this->textBox1->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->textBox1->Location = System::Drawing::Point(15, 473);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(309, 22);
@@ -273,11 +274,11 @@ namespace binaryTree {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->Location = System::Drawing::Point(12, 415);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(160, 17);
+			this->label1->Size = System::Drawing::Size(206, 20);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"Количество элементов";
 			// 
@@ -291,7 +292,7 @@ namespace binaryTree {
 			this->buttonDelete->ForeColor = System::Drawing::Color::Red;
 			this->buttonDelete->Location = System::Drawing::Point(15, 514);
 			this->buttonDelete->Name = L"buttonDelete";
-			this->buttonDelete->Size = System::Drawing::Size(205, 46);
+			this->buttonDelete->Size = System::Drawing::Size(309, 46);
 			this->buttonDelete->TabIndex = 5;
 			this->buttonDelete->Text = L"Удалить";
 			this->buttonDelete->UseVisualStyleBackColor = false;
@@ -326,10 +327,11 @@ namespace binaryTree {
 			// 
 			// numericUpDown2
 			// 
+			this->numericUpDown2->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->numericUpDown2->Location = System::Drawing::Point(15, 566);
 			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
-			this->numericUpDown2->Size = System::Drawing::Size(206, 22);
+			this->numericUpDown2->Size = System::Drawing::Size(309, 22);
 			this->numericUpDown2->TabIndex = 7;
 			this->numericUpDown2->ValueChanged += gcnew System::EventHandler(this, &mainForm::numericUpDown2_ValueChanged);
 			// 
@@ -516,7 +518,7 @@ namespace binaryTree {
 	}
 
 	private: System::Void Draw() {
-		int D = 40;
+		int D = 30;
 		int R = D / 2;
 		int x0 = 430 - R;
 		int y0 = 50;
