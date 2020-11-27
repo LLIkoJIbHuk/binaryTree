@@ -219,6 +219,7 @@ namespace binaryTree {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(mainForm::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -254,8 +255,8 @@ namespace binaryTree {
 			// numericUpDown1
 			// 
 			this->numericUpDown1->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->numericUpDown1->Location = System::Drawing::Point(234, 416);
-			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			this->numericUpDown1->Location = System::Drawing::Point(1096, 76);
+			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 6, 0, 0, 0 });
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(90, 22);
 			this->numericUpDown1->TabIndex = 1;
@@ -266,7 +267,8 @@ namespace binaryTree {
 			// textBox1
 			// 
 			this->textBox1->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox1->Location = System::Drawing::Point(15, 473);
+			this->textBox1->Enabled = false;
+			this->textBox1->Location = System::Drawing::Point(877, 133);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(309, 22);
 			this->textBox1->TabIndex = 2;
@@ -276,7 +278,7 @@ namespace binaryTree {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(12, 415);
+			this->label1->Location = System::Drawing::Point(874, 75);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(206, 20);
 			this->label1->TabIndex = 4;
@@ -290,7 +292,7 @@ namespace binaryTree {
 			this->buttonDelete->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonDelete->ForeColor = System::Drawing::Color::Red;
-			this->buttonDelete->Location = System::Drawing::Point(15, 514);
+			this->buttonDelete->Location = System::Drawing::Point(877, 174);
 			this->buttonDelete->Name = L"buttonDelete";
 			this->buttonDelete->Size = System::Drawing::Size(309, 46);
 			this->buttonDelete->TabIndex = 5;
@@ -328,7 +330,7 @@ namespace binaryTree {
 			// numericUpDown2
 			// 
 			this->numericUpDown2->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->numericUpDown2->Location = System::Drawing::Point(15, 566);
+			this->numericUpDown2->Location = System::Drawing::Point(877, 226);
 			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
 			this->numericUpDown2->Size = System::Drawing::Size(309, 22);
@@ -340,7 +342,7 @@ namespace binaryTree {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(11, 450);
+			this->label2->Location = System::Drawing::Point(873, 110);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(313, 20);
 			this->label2->TabIndex = 8;
@@ -375,6 +377,7 @@ namespace binaryTree {
 			this->Controls->Add(this->numericUpDown1);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->menuStrip1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"mainForm";
 			this->Text = L"Бинарное дерево";
@@ -399,11 +402,10 @@ namespace binaryTree {
 	//изменение кол-ва элементов
 	private: System::Void numericUpDown1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 	
-		int n;
-
 		n = Convert::ToInt64(numericUpDown1->Value);
 		dataGridView1->RowCount = n;
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++)
+		{
 			dataGridView1->Rows[i]->HeaderCell->Value = Convert::ToString(i);
 		}
 	}
@@ -438,10 +440,13 @@ namespace binaryTree {
 		int key = 0;
 		key = Convert::ToInt64(numericUpDown2->Value);
 		n = Convert::ToInt64(numericUpDown1->Value);
-		for (i = 0; i < 10; i++) {
+		for (i = 0; i < 10; i++)
+		{
 			r = dtree(r, key);
-			if (i < n) {
-				if (Convert::ToInt64(dataGridView1[0, i]->Value) == key) {
+			if (i < n)
+			{
+				if (Convert::ToInt64(dataGridView1[0, i]->Value) == key)
+				{
 					dataGridView1->Rows->RemoveAt(i);
 					numericUpDown1->Value--;
 				}
@@ -463,34 +468,42 @@ namespace binaryTree {
 		bool flag = false;
 		n = Convert::ToInt64(numericUpDown1->Value);
 		dataGridView1->RowCount = n;
-		for (i = 0; i < n; i++)	{
+		for (i = 0; i < n; i++)
+		{
 			dataGridView1->Rows[i]->HeaderCell->Value = Convert::ToString(i);
 		}
-		try {
-			int* val = 0;	
+		try
+		{
+			int* val = 0;
 			val = new int[n];
-			for (i = 0; i < n; i++) {
+			for (i = 0; i < n; i++)
+			{
 				val[i] = Convert::ToInt64(dataGridView1[0, i]->Value);
 			}
 
-			if (r) {
+			if (r)
+			{
 				del(r);
 				r = 0;
 			}
-			for (i = 0; i < n; i++) {
+			for (i = 0; i < n; i++)
+			{
 				r = stree(r, val[i]);
 			}
 			int* s = 0;
 			s = new int[n];
-			for (i = 0; i < n; i++) {
+			for (i = 0; i < n; i++)
+			{
 				s[i] = 0;
 			}
 			flag = true;
 			output(r, s, flag);
-			for (i = 0; i < n; i++) {
+			for (i = 0; i < n; i++)
+			{
 				string += Convert::ToString(s[i]) + " ";
 			}
-			if (r != 0) {
+			if (r != 0)
+			{
 				Graphics^ g = CreateGraphics();
 				g->Clear(BackColor);
 				g->FillRectangle(gcnew SolidBrush(Color::White), 130, 0, 600, 600);
@@ -501,19 +514,21 @@ namespace binaryTree {
 				textBox1->Text = Convert::ToString(min);
 				// MessageBox::Show("Вершины в постфиксном порядке: " + min + "\n");
 				int count = getCountNodesWithValue(min, r);
-				buttonSolution->Enabled = true;
+				textBox1->Text = Convert::ToString(count);
+				buttonDelete->Enabled = true;
 				numericUpDown2->Enabled = true;
 				MessageBox::Show("Вершины в постфиксном порядке: " + string + "\n" + "Минимальное: " + min + "\n" + "Количество мин: " + count + "\n");
 			}
 		}
-		catch (FormatException^ FormatException) {
+		catch (FormatException^ FormatException)
+		{
 			MessageBox::Show("Ошибка формата введенных значений!");
-			for (i = 0; i < n; i++) {
+			for (i = 0; i < n; i++)
+			{
 				dataGridView1[0, i]->Value = "";
 			}
 		}
 		string = "";
-
 	
 	}
 
@@ -529,7 +544,8 @@ namespace binaryTree {
 		format->LineAlignment = StringAlignment::Center;
 		format->Alignment = StringAlignment::Center;
 		Graphics^ g = CreateGraphics();
-		if (r) {
+		if (r)
+		{
 			g->DrawEllipse(gcnew Pen(Color::Black, 3.0), x0, y0, D, D);
 			g->DrawString(Convert::ToString(r->info), gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)), gcnew SolidBrush(Color::Black), RectangleF(x0, y0, R * 2, D), format);
