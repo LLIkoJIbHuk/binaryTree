@@ -111,7 +111,7 @@ void del(BTree* r)
 	}
 }
 
-//функция получения минимального поля
+//функция получения минимального числа
 int getMinField(BTree* tree)
 {
 	int field = tree->info;
@@ -256,7 +256,7 @@ namespace binaryTree {
 			// 
 			this->numericUpDown1->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->numericUpDown1->Location = System::Drawing::Point(1096, 76);
-			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 6, 0, 0, 0 });
+			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 20, 0, 0, 0 });
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(90, 22);
 			this->numericUpDown1->TabIndex = 1;
@@ -344,9 +344,9 @@ namespace binaryTree {
 				static_cast<System::Byte>(204)));
 			this->label2->Location = System::Drawing::Point(873, 110);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(313, 20);
+			this->label2->Size = System::Drawing::Size(209, 20);
 			this->label2->TabIndex = 8;
-			this->label2->Text = L"Уровень с минимальным значением";
+			this->label2->Text = L"Минимальное значение";
 			// 
 			// buttonSolution
 			// 
@@ -430,7 +430,7 @@ namespace binaryTree {
 			"Вариант 11\n"
 			"Учебная группа ИНБс-2301 \n"
 			"Версия 1.0\n"
-			"Разработчики - Юрлов Константин, Чайников Денис \n"
+			"Разработчики - Юрлов Константин,\n"
 			"\n\t\t\t2020 год\n");
 	}
 
@@ -508,16 +508,11 @@ namespace binaryTree {
 				g->Clear(BackColor);
 				g->FillRectangle(gcnew SolidBrush(Color::White), 130, 0, 600, 600);
 				Draw();
-				// MessageBox::Show("Вершины в постфиксном порядке: " + string + "\n");
-				// MessageBox::Show("Вершины в постфиксном порядке: " + min + "\n");
 				int min = getMinField(r);
 				textBox1->Text = Convert::ToString(min);
-				// MessageBox::Show("Вершины в постфиксном порядке: " + min + "\n");
-				int count = getCountNodesWithValue(min, r);
-				textBox1->Text = Convert::ToString(count);
 				buttonDelete->Enabled = true;
 				numericUpDown2->Enabled = true;
-				MessageBox::Show("Вершины в постфиксном порядке: " + string + "\n" + "Минимальное: " + min + "\n" + "Количество мин: " + count + "\n");
+				MessageBox::Show("Вершины в постфиксном порядке: " + string + "\n" + "Минимальное: " + min + "\n");
 			}
 		}
 		catch (FormatException^ FormatException)
